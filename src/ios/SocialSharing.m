@@ -80,9 +80,17 @@
     [self writeJavascript:[pluginResult toSuccessCallbackString:command.callbackId]];
   }];
   
-  // possible future addition: exclude some share targets.. if building locally you may uncomment these lines
-  //    NSArray * excludeActivities = @[UIActivityTypeAssignToContact, UIActivityTypeCopyToPasteboard];
-  //    activityVC.excludedActivityTypes = excludeActivities;
+  // Poll Everywhere TODO: Exclude activities using info.plist. 
+      NSArray * excludeActivities = @[UIActivityTypeAssignToContact,
+                                      UIActivityTypeCopyToPasteboard,
+                                      UIActivityTypeAirDrop,
+                                      UIActivityTypeAddToReadingList,
+                                      UIActivityTypePostToFlickr,
+                                      UIActivityTypePostToVimeo,
+                                      UIActivityTypeSaveToCameraRoll,
+                                      UIActivityTypePrint
+                                      ];
+      activityVC.excludedActivityTypes = excludeActivities;
   
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && ![[self getIPadPopupCoordinates] isEqual:@"-1,-1,-1,-1"]) {
     CGRect rect = [self getPopupRectFromIPadPopupCoordinates];
